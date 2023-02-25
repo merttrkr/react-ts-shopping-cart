@@ -9,8 +9,10 @@ type StoreItemProps = {
 };
 
 export function StoreItem({ id, name, price, imgUrl }: StoreItemProps) {
+  const quantity = 0;
   return (
-    <Card className='h-100'>//fill 100 percent
+    //fill 100 percent
+    <Card className='h-100'>
       <Card.Img
         variant='top'
         src={imgUrl}
@@ -23,6 +25,30 @@ export function StoreItem({ id, name, price, imgUrl }: StoreItemProps) {
           <span className='ms-2 text-muted'>{formatCurrency(price)}</span>
         </Card.Title>
       </Card.Body>
+      <div className='mt-auto'>
+        {quantity === 0 ? ( //  if quantity is zero add to card button
+          <Button className='w-100' /*fill with button */>+ Add To Cart</Button>
+        ) : (
+          <div
+            className='d-flex align-items-center flex-column'
+            style={{ gap: '.5rem' }}
+          >
+            <div
+              className='d-flex align-items-center justify-content-center'
+              style={{ gap: '.5rem' }}
+            >
+              <Button>-</Button>
+              <div>
+                <span className='fs-3'>{quantity}</span> in cart
+              </div>
+              <Button>+</Button>
+            </div>
+            <Button  className='w-50' variant='danger' size='sm'>
+              Remove
+            </Button>
+          </div>
+        )}
+      </div>
     </Card>
   );
 }
